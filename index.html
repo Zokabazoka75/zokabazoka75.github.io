@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustvarjanje Glasbe</title>
+    <style>
+
+
+html, body {
+    height: 100%; 
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+    flex-direction: column; 
+}
+
+
+header {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.logo img {
+        height: 80px;
+        width: 130px;
+        cursor: pointer; 
+      }
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.hero {
+    height: 80vh;
+    background: url(ozadje.jpg) no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    background: #222;
+    padding: 20px 0;
+}
+
+.footer-box {
+    color: white;
+    text-align: center;
+}
+
+.footer-box h3 {
+    color: #E0E0E0;
+}
+
+.footer-box p {
+    color: #999;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .footer {
+    margin-top: auto;
+    background: #222;
+    padding: 20px 0;
+    width: 100%; 
+}
+
+    .footer-box {
+        margin-bottom: 20px;
+    }
+}
+
+@keyframes colorCycle {
+    0%, 100% {
+        color: white;
+    }
+    25% {
+        color: blue;
+    }
+    50% {
+        color: red;
+    }
+    75% {
+        color: green;
+    }
+}  background
+
+h1, p {
+    animation: fadeInScale 1.5s ease-out forwards, colorCycle 8s ease-in-out infinite;
+    font-weight: bold;
+}
+
+
+.right-flying-image-container, .left-flying-image-container {
+        position: fixed;
+        bottom: -50px; 
+        right: 0;
+        animation: flyImage 1.36s linear infinite;
+        visibility: hidden;
+      }
+
+.left-flying-image-container {
+    left: 0;
+    animation-delay: 0.68s;
+}
+
+.left-flying-image-container img {
+    width: 50px; 
+    height: auto;
+}
+
+.right-flying-image-container img {
+    width: 50px; 
+    height: auto;
+}
+
+@keyframes flyImage {
+    0% {
+        transform: translateY(100vh); 
+    }
+    100% {
+        transform: translateY(-100vh); 
+    }
+}
+
+
+@keyframes cycleColors {
+     0%, 49.9% {
+        background-color: blue; 
+    }
+    50%, 100% {
+        background-color: red; 
+    }
+}
+
+.color-cycle {
+    animation: fadeInScale 1.5s ease-out forwards, colorCycle 8s ease-in-out infinite;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.jpg" alt="Logotip" id="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Domov</a></li>
+                <li><a href="Besedila/besedila.html">Besedila</a></li>
+                <li><a href="program/program.html">Program</a></li>
+                <li><a href="setup/setup.html">Setup</a></li>
+                <li><a href="o_nas/o_nas.html">O nas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <audio id="backgroundMusic">
+        <source src="Zoka - Akumulator (official Video).mp3" type="audio/mpeg">
+        Vaš brskalnik ne podpira HTML5 audio. Prosim, posodobite ga.
+    </audio>
+
+    <div class="hero">
+        <h1 class="color-cycle">Dobrodošli v svet glasbe</h1>
+        <p class="color-cycle">Odkrijte umetnost uživanja ob glasbi.</p>
+
+    </div>
+
+    <div class="right-flying-image-container">
+      <img src="violinski_kljuc.jpg" alt="Flying Image">
+    </div>
+
+    <div class="left-flying-image-container">
+      <img src="violinski_kljuc.jpg" alt="Flying Image">
+    </div>
+
+    <pre>
+
+
+
+
+
+
+
+
+
+
+
+    </pre>
+
+    <div class="footer">
+        <div class="footer-box">
+                <h3>Copyright ©</h3>
+                <p class="color-cycle">Vse pravice so pridržane.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('logo').addEventListener('click', function() {
+    var audio = document.getElementById('backgroundMusic');
+    var header = document.querySelector('header');
+    var rightContainer = document.querySelector('.right-flying-image-container');
+    var leftContainer = document.querySelector('.left-flying-image-container');
+    var colorCycledElements = document.querySelectorAll('.color-cycle');
+
+    if (audio.paused) {
+        audio.play();
+        header.style.animation = 'cycleColors 1.36s steps(1, end) infinite'; // Start the header color cycle animation
+        rightContainer.style.visibility = 'visible';
+        leftContainer.style.visibility = 'visible';
+        rightContainer.style.animationPlayState = 'running';
+        leftContainer.style.animationPlayState = 'running';
+        colorCycledElements.forEach(element => element.style.animationPlayState = 'running');
+    } else {
+        audio.pause();
+        header.style.animationPlayState = 'paused'; // Pause the header color cycle animation
+        rightContainer.style.animationPlayState = 'paused';
+        leftContainer.style.animationPlayState = 'paused';
+        colorCycledElements.forEach(element => element.style.animationPlayState = 'paused');
+    }
+});
+    </script>
+</body>
+</html>
